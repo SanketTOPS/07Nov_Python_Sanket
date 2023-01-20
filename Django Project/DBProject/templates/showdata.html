@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showdata</title>
+</head>
+
+<body style="background-color: lightseagreen;">
+    <center>
+        <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: rgb(37, 38, 38);">Welcome to
+            DBProject</h1>
+    </center>
+    <hr>
+    <center>
+        <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color: rgb(103, 43, 94);">Welcome to
+            All Students Data</h1>
+    </center>
+    <!-- {{stdata}} -->
+    <!-- {%for i in stdata%}
+    {{i.firstname}}
+    {{i.lastname}}
+    {{i.email}}
+    {%endfor%} -->
+    <table align="center" border="2" style="border-style:inset;">
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        {% for i in stdata %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.firstname}}</td>
+            <td>{{i.lastname}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.dob}}</td>
+            <td>{{i.mobile}}</td>
+            <td>{{i.address}}</td>
+            <td><a href="/updatedata/{{i.id}}">Update</a><a href="/deletedata/{{i.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

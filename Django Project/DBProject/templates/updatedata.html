@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updatedata</title>
+</head>
+<body style="background-color: lightseagreen;">
+     <center><h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: rgb(37, 38, 38);">Update Userinfo</h1></center>
+     <hr>
+     <form method="post" style="border: 2px;border-radius: 5%;border-color: black;border-style:inherit;border-spacing: 20px;">
+        {% csrf_token %}
+        <input type="text" name="firstname" value="{{stid.firstname}}" placeholder="Firstname"><br><br>
+        <input type="text" name="lastname" value="{{stid.lastname}}"  placeholder="Lastname"><br><br>
+        <input type="email" name="email" value="{{stid.email}}"  placeholder="Email"><br><br>
+        <input type="date" name="dob" value="{{stid.dob|date:'Y-m-d'}}" ><br><br>
+        <input type="number" name="mobile" placeholder="Mobile" value="{{stid.mobile}}" ><br><br>
+        <textarea placeholder="Address"  name="address"></textarea><br><br>
+        <input type="submit" value="Update" style="background-color: cadetblue;font-size: medium;">
+    </form>
+    <hr>
+    <a href="/showdata">Showdata</a>
+</body>
+</html>

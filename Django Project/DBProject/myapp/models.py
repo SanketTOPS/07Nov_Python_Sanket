@@ -10,5 +10,4 @@ class userInfo(models.Model):
     mobile=models.IntegerField()
     address=models.TextField()
 
-    def __str__(self) -> str:
-        return self.email
+    
