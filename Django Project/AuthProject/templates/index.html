@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Indx</title>
+</head>
+<body style="background-color: aquamarine;">
+    <center><h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Welcome to Authproject</h1></center>
+    <hr>
+    <center><h2><u>Signin</u></h2></center>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username"><br><br>
+        <input type="password" name="password" placeholder="Password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <hr>
+    <a href="/signup">Signup</a>
+</body>
+</html>

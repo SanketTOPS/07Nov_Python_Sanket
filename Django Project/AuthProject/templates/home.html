@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body style="background-color: rgb(177, 146, 43);">
+    <center><h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Welcome to Authproject</h1></center>
+    <hr>
+    <center><h2><u>Welcome, {{user}}</u></h2></center>
+    {% if user is none %}
+    <a href="">Login</a>  
+    {% else %}
+    <a href="/userlogout">Logout</a>  
+    {% endif %}
+</body>
+</html>
