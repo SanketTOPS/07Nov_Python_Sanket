@@ -19,10 +19,10 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="/">BatchProject</a> -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="/static/images/app_logo.png" width="30" height="30" class="d-inline-block align-text-top">
                 Batchproject
-              </a>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -31,10 +31,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+                        <a class="nav-link active" aria-current="page" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
@@ -50,16 +50,111 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
+                    {% if user is none %}
                     <button class="btn btn-outline-warning mx-2" data-bs-toggle="modal" data-bs-target="#loginModal"
                         type="button">Login</button>
                     <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signupModal"
                         type="button">Signup</button>
+                    {% else %}
+                    <div class="dropdown">
+                        <a class="btn btn-danger dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{user}}
+                        </a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
-    <center><h1>This is Profile</h1></center>
+
+    <!-- Profile Form Start -->
+    <div class="container my-5">
+        <form method="post" class="row g-3 needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">First name</label>
+                <input type="text" name="firstname" value="{{cuser.firstname}}" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Last name</label>
+                <input type="text" name="lastname" value="{{cuser.lastname}}" class="form-control" id="validationCustom02" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" name="username" value="{{cuser.username}}" class="form-control" id="validationCustomUsername"
+                        aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Password</label>
+                <input type="password" name="password" value="{{cuser.password}}" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">City</label>
+                <input type="text" name="city" value="{{cuser.city}}" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom04" class="form-label">State</label>
+                <select class="form-select" name="state" id="validationCustom04" required>
+                    <option selected disabled value="">{{cuser.state}}</option>
+                    <option>Gujarat</option>
+                    <option>Delhi</option>
+                    <option>Punjab</option>
+                    <option>Goa</option>
+                    <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid state.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom05" class="form-label">Mobile</label>
+                <input type="number" name="mobile" value="{{cuser.mobile}}" class="form-control" id="validationCustom05" required>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Update Profile</button>
+            </div>
+        </form>
+    </div>
+    <!-- Profile Form End -->
 </body>
 
 </html>

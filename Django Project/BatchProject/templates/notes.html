@@ -19,10 +19,10 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="/">BatchProject</a> -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="/static/images/app_logo.png" width="30" height="30" class="d-inline-block align-text-top">
                 Batchproject
-              </a>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -31,13 +31,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
+                        <a class="nav-link active" aria-current="page" href="#">Notes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/about">About</a>
@@ -49,17 +49,35 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <button class="btn btn-outline-warning mx-2" data-bs-toggle="modal" data-bs-target="#loginModal"
+                    <button class="btn btn-outline-success mx-2" type="submit">Search</button>
+
+                    {% if user is none %}
+                    <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#loginModal"
                         type="button">Login</button>
-                    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signupModal"
+                    <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal" data-bs-target="#signupModal"
                         type="button">Signup</button>
+                    {% else %}
+                    <!-- <button class="btn btn-outline-danger" type="button">Logout</button> -->
+                    <div class="dropdown">
+                        <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{user}}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
-    <center><h1>This is Notes</h1></center>
+    <center>
+        <h1>This is Notes</h1>
+    </center>
 </body>
 
 </html>
