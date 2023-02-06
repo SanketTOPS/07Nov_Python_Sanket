@@ -51,10 +51,25 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
+                    {% if user is none %}
                     <button class="btn btn-outline-warning mx-2" data-bs-toggle="modal" data-bs-target="#loginModal"
                         type="button">Login</button>
                     <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signupModal"
                         type="button">Signup</button>
+                    {% else %}
+                    <!-- <button class="btn btn-outline-danger" type="button">Logout</button> -->
+                    <div class="dropdown mx-2">
+                        <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{user}}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
@@ -169,7 +184,8 @@
                         </div>
                         <div class="col-md-6">
                             <label for="validationCustom01" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="validationCustom01" required>
+                            <input type="password" name="password" class="form-control" id="validationCustom01"
+                                required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>

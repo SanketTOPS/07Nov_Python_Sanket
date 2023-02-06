@@ -1,0 +1,34 @@
+C
+========================
+1).History of C
+2).variables declration
+3).data types
+4).input-output
+5).operators
+6).conditional statements
+	-if
+	-if_else
+	-if_elseif_elseif
+	-nested if
+	-switch
+7).looping structure
+	-while
+	-do_while
+	-for
+8).control statements
+9).array
+10).UDF
+	-getdata()
+	-getdata(int a)
+	-int getdata()
+	-int getdata(int a, int b)
+11).string (func)
+12).structure - union
+13).file handling
+
+
+
+
+
+
+
