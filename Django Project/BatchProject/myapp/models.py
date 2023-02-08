@@ -20,3 +20,11 @@ class mynotes(models.Model):
     myfiles=models.FileField(upload_to='Notes')
     comments=models.TextField()
 
+class feedback(models.Model):
+    created=models.DateTimeField(default=datetime.now(),blank=True)
+    name=models.CharField(max_length=100)
+    email=models.EmailField()
+    subject=models.CharField(max_length=100)
+    msg=models.TextField()
+
+
