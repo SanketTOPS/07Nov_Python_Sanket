@@ -4,6 +4,8 @@ from .models import userSignup
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from BatchProject import settings
+import requests
+import random
 
 # Create your views here.
 
@@ -29,6 +31,17 @@ def index(request):
                 print("Login Successfull!")
                 request.session['userid']=userid.id
                 request.session['user']=unm
+
+                #SMS Sending Code
+                otp=random.randint(1111,9999)
+                url = "https://www.fast2sms.com/dev/bulkV2"
+                querystring = {"authorization":"PSqGhvu5BkQv1WEvvWH6PIgV0vr1IcOIEzgsN1fZMHFG0WJapJ1hGGIwYfq8","variables_values":f"{otp}","route":"otp","numbers":"7046870999,8238697855,9601268814,7990960033,9313267025,7567391478,9875180057,7096488183"}
+                #querystring = {"authorization":"PSqGhvu5BkQv1WEvvWH6PIgV0vr1IcOIEzgsN1fZMHFG0WJapJ1hGGIwYfq8","message":f"Dear User!\Your account has been logdin\nYour OTP is {otp}","language":"english","route":"q","numbers":request.POST["mobile"]}
+                headers = {
+                    'cache-control': "no-cache"
+                }
+                response = requests.request("GET", url, headers=headers, params=querystring)
+                print(response.text)
                 return redirect('notes')
             else:
                 print("Error!Login faild")
@@ -74,6 +87,7 @@ def contact(request):
             fromEmail=settings.EMAIL_HOST_USER
             #toEmail=["montu.marakana9919@gmail.com","ravaiyahardik@gmail.com","chaudharitejash32@gmail.com","masuraarjan0106@gmail.com","vaniyavrutika214@gmail.com","sadariyagaurav789@gmail.com"]
             toEmail=[request.POST['email']]
+            
             send_mail(subject=sub,message=msg,from_email=fromEmail,recipient_list=toEmail)
             print("Your feedback send successfully!")
         else:

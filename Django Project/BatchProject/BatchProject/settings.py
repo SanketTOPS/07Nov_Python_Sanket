@@ -39,7 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+
+    #django-allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+#django-allauth
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +79,12 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+#django-allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'BatchProject.wsgi.application'
@@ -140,5 +158,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = '01decdmbatch@gmail.com'
-EMAIL_HOST_PASSWORD = 'ozjvjhdpehuycgxt'
+EMAIL_HOST_PASSWORD = 'ozjvjhdpehuycgxt' #app password
 
+#Login Redirect
+LOGIN_REDIRECT_URL="/"
