@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from BatchProject import settings
 import requests
 import random
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -13,11 +15,19 @@ def index(request):
     user=request.session.get('user')
     if request.method=='POST': #root
         if request.POST.get('signup')=='signup':
+            username=""
             newuser=signupForm(request.POST)
             if newuser.is_valid():
-                newuser.save()
-                print("User created successfully!")
-                return redirect('/')
+                username=newuser.cleaned_data.get('username')
+                try:
+                    unm=userSignup.objects.get(username=username)
+                    print("Username is already exists!")
+                    messages.error(request, messages.error, "Username is already exists!")
+                except userSignup.DoesNotExist:
+                    newuser.save()
+                    print("User created successfully!")
+                    messages.success(request, messages.success, "User created successfully!")
+                    return redirect('/')
             else:
                 print(newuser.errors)
         elif request.POST.get('login')=='login':
@@ -26,6 +36,7 @@ def index(request):
 
             userid=userSignup.objects.get(username=unm)
             print("UserID:",userid.id)
+
             user=userSignup.objects.filter(username=unm,password=pas)
             if user:
                 print("Login Successfull!")
@@ -33,7 +44,7 @@ def index(request):
                 request.session['user']=unm
 
                 #SMS Sending Code
-                otp=random.randint(1111,9999)
+                """otp=random.randint(1111,9999)
                 url = "https://www.fast2sms.com/dev/bulkV2"
                 querystring = {"authorization":"PSqGhvu5BkQv1WEvvWH6PIgV0vr1IcOIEzgsN1fZMHFG0WJapJ1hGGIwYfq8","variables_values":f"{otp}","route":"otp","numbers":"7046870999,8238697855,9601268814,7990960033,9313267025,7567391478,9875180057,7096488183"}
                 #querystring = {"authorization":"PSqGhvu5BkQv1WEvvWH6PIgV0vr1IcOIEzgsN1fZMHFG0WJapJ1hGGIwYfq8","message":f"Dear User!\Your account has been logdin\nYour OTP is {otp}","language":"english","route":"q","numbers":request.POST["mobile"]}
@@ -41,10 +52,12 @@ def index(request):
                     'cache-control': "no-cache"
                 }
                 response = requests.request("GET", url, headers=headers, params=querystring)
-                print(response.text)
+                print(response.text)"""
+                messages.success(request,f"Welcome! {unm}")
                 return redirect('notes')
             else:
                 print("Error!Login faild")
+                messages.error(request,"Error! Login faild")
     return render(request,'index.html',{'user':user})
 
 def profile(request):

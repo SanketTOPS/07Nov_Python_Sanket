@@ -53,7 +53,7 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                    {% if user is none %}
+                    {% if not user.is_active %}
                     <button class="btn btn-outline-warning mx-2" data-bs-toggle="modal" data-bs-target="#loginModal"
                         type="button">Login</button>
                     <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#signupModal"
@@ -65,7 +65,6 @@
                             aria-expanded="false">
                             {{user}}
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
                             <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
@@ -77,6 +76,17 @@
         </div>
     </nav>
     <!-- Navbar End -->
+
+    <!-- Error MSG -->
+
+    {% for msg in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>{{msg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+
 
     <!-- Image Slider Start -->
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -137,12 +147,14 @@
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-                        
+
                         <div class="d-grid gap-2">
                             <button type="submit" name="login" value="login" class="btn btn-primary">Login</button>
-                            <a class="btn btn-primary" href="{% provider_login_url 'facebook' %}" type="button">Login with Facebook</a>
-                            <a class="btn btn-danger" href="{% provider_login_url 'google' %}" type="button">Login with Gmail</a>
-                          </div>
+                            <a class="btn btn-primary" href="{% provider_login_url 'facebook' %}" type="button">Login
+                                with Facebook</a>
+                            <a class="btn btn-danger" href="{% provider_login_url 'google' %}" type="button">Login with
+                                Gmail</a>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
