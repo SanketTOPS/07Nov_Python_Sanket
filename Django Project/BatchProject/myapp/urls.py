@@ -9,4 +9,6 @@ urlpatterns = [
    path('about/',views.about),
    path('contact/',views.contact),
    path('userlogout/',views.userlogout),
+   path('adminpage/',views.adminpage),
+   path('alluserdata/',views.alluserdata),
 ]

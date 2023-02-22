@@ -54,6 +54,7 @@ def index(request):
                 response = requests.request("GET", url, headers=headers, params=querystring)
                 print(response.text)"""
                 messages.success(request,f"Welcome! {unm}")
+                print(user)
                 return redirect('notes')
             else:
                 print("Error!Login faild")
@@ -111,4 +112,10 @@ def userlogout(request):
     logout(request)
     return redirect('/')
 
+def adminpage(request):
+    user=request.session.get('user')
+    return render(request,'adminpage.html',{'user':user})
 
+def alluserdata(request):
+    data=userSignup.objects.all()
+    return render(request,'alluserdata.html',{'data':data})

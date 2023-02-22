@@ -48,7 +48,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
                     </li>
-
+                    
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -135,7 +135,7 @@
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Username</label>
-                            <input type="email" name="username" class="form-control" id="exampleInputEmail1"
+                            <input type="text" name="username" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
@@ -194,7 +194,7 @@
                             <label for="validationCustomUsername" class="form-label">Username</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                <input type="email" name="username" class="form-control" id="validationCustomUsername"
+                                <input type="text" name="username" class="form-control" id="validationCustomUsername"
                                     aria-describedby="inputGroupPrepend" required>
                                 <div class="invalid-feedback">
                                     Please choose a username.
